@@ -1,0 +1,7 @@
+def handler(event, context):
+    for i in range(100):
+        print(f"This is main test {i} This is main test {i} This is main test {i} This is main test {i} This is main test {i} This is main test {i} This is main test {i} This is main test {i} This is main test {i} This is main test {i} v This is main test {i}This is main test {i}")
+        print(f"This is main test {i} This is main test {i} This is main test {i} This is main test {i} This is main test {i} This is main test {i} This is main test {i} This is main test {i} This is main test {i} This is main test {i} v This is main test {i}This is main test {i}")
+        print(f"This is main test {i} This is main test {i} This is main test {i} This is main test {i} This is main test {i} This is main test {i} This is main test {i} This is main test {i} This is main test {i} This is main test {i} v This is main test {i}This is main test {i}")
+        print(f"This is main test {i} This is main test {i} This is main test {i} This is main test {i} This is main test {i} This is main test {i} This is main test {i} This is main test {i} This is main test {i} This is main test {i} v This is main test {i}This is main test {i}")
+    return {"main":"function"}

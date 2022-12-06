@@ -1,0 +1,31 @@
+{
+  "name": "organization-service",
+  "version": "1.0.0",
+  "description": "This README would normally document whatever steps are necessary to get your application up and running.",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://manojjadhav143@bitbucket.org/shorelineiot/cloudv2_service_org.git"
+  },
+  "author": "Manoj",
+  "license": "ISC",
+  "homepage": "https://bitbucket.org/shorelineiot/cloudv2_service_org#readme",
+  "dependencies": {
+    "serverless-api-gateway-throttling": "^2.0.2",
+    "serverless-python-requirements": "^6.0.0",
+    "serverless-wsgi": "^3.0.1"
+  },
+  "devDependencies": {
+    "serverless-attach-managed-policy": "0.0.7",
+    "serverless-dotenv-plugin": "^4.0.2",
+    "serverless-localstack": "^1.0.1",
+    "serverless-offline": "^11.2.1",
+    "serverless-plugin-warmup": "^8.1.0"
+  }
+}

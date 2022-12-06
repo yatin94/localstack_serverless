@@ -1,0 +1,66 @@
+service: testService
+
+useDotenv: true
+plugins:
+  - serverless-localstack
+  - serverless-python-requirements
+  - serverless-wsgi
+  - serverless-dotenv-plugin
+  - serverless-attach-managed-policy
+
+custom:
+  localstack:
+    stages:
+      # Stages for which the plugin should be enabled
+      - local
+      - dev
+    host: "http://localhost"
+    debug: true
+  pythonRequirements:
+    slim: true
+    slimPatternsAppendDefaults: false
+    slimPatterns:
+      - '**/*.py[c|o]'
+      - '**/__pycache__*'
+    usePoetry: false
+    dockerizePip: non-linux
+    fileName: requirements/empty.txt
+provider:
+  name: aws
+  runtime: python3.9
+  stage: dev
+  region: us-east-1
+  iam:
+    role:
+      managedPolicies:
+        - "arn:aws:iam::aws:policy/AmazonCognitoPowerUser"
+        - "arn:aws:iam::aws:policy/AmazonSSMFullAccess"
+        - "arn:aws:iam::aws:policy/service-role/AWSLambdaRole"
+        - "arn:aws:iam::aws:policy/AmazonSESFullAccess"
+        - "arn:aws:iam::aws:policy/AmazonAPIGatewayAdministrator"
+        - "arn:aws:iam::aws:policy/AmazonAPIGatewayInvokeFullAccess"
+
+functions:
+  test__mainlambda:
+    handler: main_test.handler
+    memorySize: 1024
+    timeout: 30
+    package: {}
+    events:
+      - http:
+          path: testservice/{proxy+}
+          method: ANY
+          cors: true
+  test_function1:
+    handler: test_function.handler
+    memorySize: 1024
+    timeout: 12
+    package: {}
+    layers: 
+      - arn:aws:lambda:us-east-1:000000000000:layer:org-service-python-dep-layer:1
+    events:
+      - http:
+          path: testservice/api/v1/orgs/exists
+          method: get
+          cors: true
+
